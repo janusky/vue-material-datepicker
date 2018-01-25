@@ -1,8 +1,80 @@
+# Información
+Este `Fork` tiene las modificaciones necesarias para utilizar en proyecto creado por medio de [vuejs-templates](http://vuejs-templates.github.io/webpack/).  
+Dichas modificaciones son
+* Compatible con [ESLint](https://eslint.org/) (ES6)
+* Sin dependencia con jquery
+* Estilos tipo [SCSS](http://sass-lang.com/guide) cambian a [CSS](https://www.w3schools.com/css/).
+
+### Instalar
+```shell
+# Dependencias
+npm install moment --save
+npm install moment-range --save
+
+# Utilizar componente desde github
+# Agregar la siguiente linea en archivo package.json, luego ejecutar `npm install`
+"vue-material-datepicker": "https://github.com/janusky/vue-material-datepicker.git",
+#
+npm install
+```
+
+### Utilizar
+```javascript
+import Datepicker from 'vue-material-datepicker'
+export default {  
+  components: {
+    Datepicker
+  },
+  methods: {
+    updateMyDate (date) {
+      this.myDate = date
+    },
+```
+```html
+<datepicker></datepicker>
+o
+<datepicker 
+    v-on:selectDate="updateMyDate"
+    :date-init="myDate"
+    lang="es"
+    format="DD MMM YYYY"
+    class-design="mdc-text-field__input">
+</datepicker>
+```
+### Funcionalidades incorporadas (API)
+#### disableFuture
+Object of [moment](http://momentjs.com/) or date to limit the maximum day.  
+Date format must be `YYYY-MM-DD` or `YYYY-MM-D`   
+
+type : `Object`   
+required : `false`  
+default : `null`
+
+e.g :
+
+```html
+<datepicker :disable-future="disableFuture"></datepicker>
+```
+```javascript
+import Datepicker from 'vue-material-datepicker'
+...
+data() {   
+    return {   
+        disableFuture: moment().add(10, 'day')
+    }
+}
+```
+
+
+
+
 # vue-material-datepicker
 
 This datepicker is a fully customisable Vue(v2.1.6) version of the [material-ui datepicker](http://www.material-ui.com/#/components/date-picker) that fit all your projects.
 
 See below to discover all customisable components.
+
+NOTE: This is a fork - Version released on NPM is **NOT UP TO DATE** and does not work correctly!
 
 # Contact
 
@@ -12,41 +84,29 @@ If you have some issues or if you want to contribute, feel free to email me to !
 
 email : grangerbastien@gmail.com
 
-# Demo
+**Fork Info**
 
-## Simple portrait
-
-![simple datepicker](https://s3-eu-west-1.amazonaws.com/npm-images/vue-material-datepicker/simple-version.png)
-
-![Change Years](https://s3-eu-west-1.amazonaws.com/npm-images/vue-material-datepicker/change-years.png)
-
-
-## Doubled portrait
-
-![doubled datepicker](https://s3-eu-west-1.amazonaws.com/npm-images/vue-material-datepicker/doubled-version.png)
-
-![change year doubled](https://s3-eu-west-1.amazonaws.com/npm-images/vue-material-datepicker/change-year-doubled.png)
-
-## Simple landscape
-
-![simple landscape](https://s3-eu-west-1.amazonaws.com/npm-images/vue-material-datepicker/landscape-simple.png)
-
-![simple years landscape](https://s3-eu-west-1.amazonaws.com/npm-images/vue-material-datepicker/landscape-simple-years.png)
-
-## Doubled landscape
-
-![doubled landscape](https://s3-eu-west-1.amazonaws.com/npm-images/vue-material-datepicker/landscape-double.png)
-
-![doubled years landscape](https://s3-eu-west-1.amazonaws.com/npm-images/vue-material-datepicker/landscape-double-years.png)
-
+email: janusky@gmail.com
 
 # Installation
 
 ## npm
 
+~~npm install vue-datepicker~~
+
+Original version can be found via:
 ```shell
-$ npm install vue-datepicker
+$ npm install vue-material-datepicker
 ```
+
+Do not use the NPM Version! Install directly from GitHub! 
+
+NPM Version is not up-to-date and does not work correctly!
+
+```shell
+"vue-material-datepicker": "git://github.com/janusky/vue-material-datepicker.git",
+```
+Add this in package.json, then run ```npm install```
 
 # Requirements
 
@@ -86,6 +146,33 @@ new Vue({
   </body>
 </html>
 ```
+
+# Demo
+
+## Simple portrait
+
+![simple datepicker](https://s3-eu-west-1.amazonaws.com/npm-images/vue-material-datepicker/simple-version.png)
+
+![Change Years](https://s3-eu-west-1.amazonaws.com/npm-images/vue-material-datepicker/change-years.png)
+
+
+## Doubled portrait
+
+![doubled datepicker](https://s3-eu-west-1.amazonaws.com/npm-images/vue-material-datepicker/doubled-version.png)
+
+![change year doubled](https://s3-eu-west-1.amazonaws.com/npm-images/vue-material-datepicker/change-year-doubled.png)
+
+## Simple landscape
+
+![simple landscape](https://s3-eu-west-1.amazonaws.com/npm-images/vue-material-datepicker/landscape-simple.png)
+
+![simple years landscape](https://s3-eu-west-1.amazonaws.com/npm-images/vue-material-datepicker/landscape-simple-years.png)
+
+## Doubled landscape
+
+![doubled landscape](https://s3-eu-west-1.amazonaws.com/npm-images/vue-material-datepicker/landscape-double.png)
+
+![doubled years landscape](https://s3-eu-west-1.amazonaws.com/npm-images/vue-material-datepicker/landscape-double-years.png)
 
 # API
 

@@ -1,46 +1,51 @@
-import Moment from 'moment';
-import { extendMoment } from 'moment-range';
-const moment = extendMoment(Moment);
+import Moment from 'moment'
+import { extendMoment } from 'moment-range'
+const moment = extendMoment(Moment)
 
-export default class Month {
+export function getWeekDays (lang) {
+  const days = []
 
-  constructor(month, year) {
-    this.start = moment([year, month]);
-    this.end = this.start.clone().endOf('month');
-    this.month = month;
-    this.year = year;
+  moment.locale(lang)
+
+  for (var i = 0; i < 7; i++) {
+    days.push(
+      moment()
+        .weekday(i)
+        .format('dd')
+    )
   }
-
-  getWeekStart() {
-    return this.start.weekday();
-  }
-
-  getDays() {
-    return Array.from(moment.range(this.start, this.end).by('days'));
-  }
-
-  getFormatted() {
-    return this.start.format('MMMM YYYY');
-  }
-
-  getWeeks() {
-    return this.end.week() - this.start.week() + 1;
-  }
-
-  getYears() {
-    let start = moment([this.start.year() - 50, 0]);
-    let end = moment([this.start.year() + 50, 0]);
-
-    return Array.from(moment.range(start, end).by('years'));
-  }
+  return days
 }
 
-export function getWeekDays(lang) {
-  let days = [];
+export function Month (month, year) {
+  this.start = moment([year, month])
+  this.end = this.start.clone().endOf('month')
+  this.month = month
+  this.year = year
+  this.id = 0
 
-  moment.locale(lang);
+  this.getWeekStart = function () {
+    return this.start.weekday()
+  }
 
-  for(let i = 0; i < 7; i++) days.push(moment().weekday(i).format('dd'));
+  this.getDays = function () {
+    var range = moment.range(this.start, this.end)
+    return Array.from(range.by('days'))
+  }
 
-  return days;
+  this.getFormatted = function () {
+    return this.start.format('MMMM YYYY')
+  }
+
+  this.getWeeks = function () {
+    return this.end.week() - this.start.week() + 1
+  }
+
+  this.getYears = function () {
+    var start = moment([this.start.year() - 50, 0])
+    var end = moment([this.start.year() + 50, 0])
+    var range = moment.range(start, end)
+
+    return Array.from(range.by('years'))
+  }
 }
